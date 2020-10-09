@@ -11,14 +11,9 @@ public class Main {
         int cord2;
         int komorka = 0;
         boolean draw;
-        boolean finish = false;
         boolean rysujX = true;
-        boolean rysujY = false;
 
         StringBuilder napis = new StringBuilder("         ");
-        String cells = "         ";
-        String cells2 = "";
-
 
         //Rysowanie planszy
         System.out.println("---------");
@@ -28,13 +23,11 @@ public class Main {
         System.out.println("---------");
 
 
-
-
-
-        while (finish == false) {
+        //Gra
+        while (true) {
 
             draw=false;
-            while (draw == false) {
+            while (!draw) {
 
                 System.out.print("Enter the coordinates: ");
                 try {
@@ -123,26 +116,21 @@ public class Main {
                     default:
                         System.out.println("Error");
                 }
-                if (draw == false) {
+                if (!draw) {
                     System.out.println("This cell is occupied! Choose another one!");
                 }
 
 
             }
-            cells2 += cells.substring(0, komorka);
 
             //rysowanie
-            if (rysujX == true) {
-                cells2 += 'X';
+            if (rysujX) {
                 rysujX = false;
-                rysujY = true;
                 puste--;
                 napis.replace(komorka, komorka + 1, "X");
 
-            } else if (rysujY == true) {
-                cells2 += 'Y';
+            } else {
                 rysujX = true;
-                rysujY = false;
                 puste--;
                 napis.replace(komorka, komorka + 1, "O");
             }
@@ -204,16 +192,16 @@ public class Main {
             if (napis.charAt(2) == 'O' && napis.charAt(4) == 'O' && napis.charAt(6) == 'O')
                 wygranaO = true;
 
-            if(wygranaO==true && wygranaX==true)
+            if(wygranaO && wygranaX)
                 System.out.println("Impossible");
             else
-            if(wygranaO==true) {
+            if(wygranaO) {
                 System.out.println("O wins");
                 break;
             }
 
             else
-            if(wygranaX==true) {
+            if(wygranaX) {
                 System.out.println("X wins");
                 break;
             }
@@ -225,6 +213,8 @@ public class Main {
             else
                 System.out.println("Game not finished");
         }
+
+
     }
 }
 
